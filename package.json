@@ -89,7 +89,9 @@
       "rssLimit": 10,
       "rssFullHtml": false,
       "rssSlug": "index",
-      "includeEmptyFiles": true
+      "includeEmptyFiles": true,
+      "includePDFs": true,
+      "rssRecentNotesText": "Recent notes"
     },
     "optionSchema": {
       "enableSiteMap": {
@@ -109,6 +111,12 @@
       },
       "includeEmptyFiles": {
         "type": "boolean"
+      },
+      "includePDFs": {
+        "type": "boolean"
+      },
+      "rssRecentNotesText": {
+        "type": "string"
       }
     }
   },
