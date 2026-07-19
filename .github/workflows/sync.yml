@@ -1,0 +1,13 @@
+name: Rebase Upstream
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    permissions:
+      contents: write
+    uses: McCio/quartz/.github/workflows/_rebase-upstream.yml@v5
+    with:
+      upstream_repo: quartz-community/content-index
+      upstream_branch: main

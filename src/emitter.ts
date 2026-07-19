@@ -38,6 +38,7 @@ interface Options {
   includeEmptyFiles: boolean;
   rssRecentNotesText?: string;
   rssLastFewNotesText?: (count: number) => string;
+  includePDFs?: boolean;
 }
 
 const defaultOptions: Options = {
@@ -49,6 +50,7 @@ const defaultOptions: Options = {
   includeEmptyFiles: true,
   rssRecentNotesText: "Recent notes",
   rssLastFewNotesText: (count) => `Last ${count} notes`,
+  includePDFs: true,
 };
 
 const write = async (args: {
@@ -137,6 +139,8 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const data = (file.data as Record<string, unknown>) ?? {};
       if (data.unlisted === true) continue;
       const slug = data.slug as FullSlug;
+      const isPDF = (slug as string).endsWith(".pdf");
+      if (isPDF && options.includePDFs === false) continue;
       const date = getDate(data as QuartzPluginData) ?? new Date();
       const text = data.text as string | undefined;
       if (options.includeEmptyFiles || (text && text !== "")) {
